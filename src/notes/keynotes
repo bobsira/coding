@@ -1,0 +1,16 @@
+1. PALINDROME UTILITY
+
+a) Reverse the given String
+b) Check if reverse of String is equal to itself, if yes then given String is palindrome.
+
+In our solution, we have a static method isPalindromeString(String text), which accepts a String.
+It then call reverse(String text) method to reverse this String. This method uses recursion to reverse String.
+This function first check if given String is null or empty, if yes then it return the same String because they don't require to be reversed.
+
+After this validation, it extract last character of String and pass rest of String using substring() method to this method itself, hence recursive solution.
+The validation also servers as base case because after every step, String keeps getting reduced and eventually it will become empty,
+there your function will stop recursion and will use String concatenation to concatenate all character in reverse order.
+Finally this method returns the reverse of String.
+
+Once call to reverse() returns back, isPalindromeString(String text) uses equals() method to check if reverse of String is equal to original String or not,
+if yes then it returns true, which also means String is palindrome.
