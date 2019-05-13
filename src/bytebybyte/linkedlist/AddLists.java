@@ -18,24 +18,4 @@ public class AddLists {
         return addList(firstList,secondList,0);
     }
 
-    public static void main(String[] args) {
-        LinkedList first = new LinkedList();
-        LinkedList second = new LinkedList();
-        Node one = new Node(7);
-        Node two = new Node(1);
-        Node three = new Node(6);
-        Node four = new Node(5);
-        Node five = new Node(9);
-        Node six = new Node(2);
-
-        first.head = one; one.next = two; two.next = three;
-        second.head = four; four.next = five; five.next = six;
-
-        Node result = addList(first.head,second.head,0);
-        while (result != null){
-            System.out.print( result.data + " ");
-            result = result.next;
-        }
-
-    }
 }
