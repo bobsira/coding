@@ -19,15 +19,14 @@ public class LevelOrderTraversal {
     }
 
     public static void main(String[] args) {
-        Node root = new Node(1);
+        Node root = new Node(6);
         Insert.insert(root,2);
         Insert.insert(root,3);
-        Insert.insert(root,4);
+        Insert.insert(root,7);
         Insert.insert(root,5);
 
-        LevelOrderTraversal.levelOrder(root);
-
-        //BinaryTree tree = new BinaryTree(root);
+        BinaryTree tree = new BinaryTree(root);
+        LevelOrderTraversal.levelOrder(tree.root);
 
 
     }

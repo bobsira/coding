@@ -50,11 +50,7 @@ public class BigThree {
                 }
                 return current.data;
             }
-            int minValueRecursively(Node root){
-                if (root == null) return -1;
-                if (root.left == null) return root.data;
-                return minValueRecursively(root.left);
-            }
+
             Node MinValue(Node root){
                 while (root.left != null) root = root.left;
                 return root;
@@ -101,64 +97,9 @@ public class BigThree {
                 return Math.max(left,right) + 1;
             }
 
-            void levelOder(Node root){
-                Queue<Node> queue = new LinkedList<Node>();
-                queue.add(root);
-                while (!queue.isEmpty()){
-                    Node temp = queue.peek();
-                    System.out.print(temp.data+ " ");
-                    if (temp.left != null) queue.add(temp.left);
-                    if (temp.right != null) queue.add(temp.right);
-                    queue.remove();
-                }
-            }
 
-            void inOrder(Node root){
-                if(root == null) return;
-                inOrder(root.left);
-                System.out.print(root.data + " ");
-                inOrder(root.right);
-            }
-            void preOrder(Node root){
-                if(root == null) return;
-                System.out.print(root.data + " ");
-                preOrder(root.left);
-                preOrder(root.right);
-            }
-            void postOrder(Node root){
-                if(root == null) return;
-                postOrder(root.left);
-                postOrder(root.right);
-                System.out.print(root.data + " ");
-            }
 
-            boolean isBST(Node root){
-                if (root == null) return true;
-                if (isSubtreeLesser(root.left, root.data) && isSubtreeGreater(root.right, root.data) && isBST(root.left) && isBST(root.left)) return true;
-                else return false;
-            }
-            boolean isSubtreeLesser(Node root, int value){
-                if (root == null) return true;
-                if (root.data < value && isSubtreeLesser(root.left, value) && isSubtreeLesser(root.right, value)) return true;
-                else return false;
-            }
-            boolean isSubtreeGreater(Node root, int value){
-                if (root == null) return true;
-                if (root.data > value && isSubtreeGreater(root.left, value) && isSubtreeGreater(root.right, value)) return true;
-                return false;
-            }
 
-            boolean isBinarySearchTree(Node root){
-                return isBSTUtil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
-            }
-            boolean isBSTUtil(Node root, int min, int max){
-                if (root == null) return true;
-                if (root.data > min && root.data < max
-                        && isBSTUtil(root.left,min,root.data)
-                        && isBSTUtil(root.right, root.data, max))
-                    return true;
-                else return false;
-            }
 
             Node delete(Node root, int data){
                 if (root == null) return root;
@@ -182,6 +123,7 @@ public class BigThree {
                 }
                 return root;
             }
+
             Node deleteOPT(Node root, int data){
                 if (root == null) return root;
                 else if (data < root.data) {
