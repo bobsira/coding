@@ -40,4 +40,26 @@ public class Compression {
         return compressedString.length() < string.length() ? compressedString.toString() : string;
     }
 
+    private static String decode(String string){
+        StringBuilder output = new StringBuilder();
+        int count = 0;
+
+        for (int i = 1; i < string.length() ; i++){
+
+            char c = string.charAt(i - 1);
+
+            if (i % 2 != 0){
+                count =  string.charAt(i) - '0';
+
+                while ( count > 0){
+                    output.append(c);
+                    count = count - 1;
+                }
+            }
+
+        }
+
+        return output.toString();
+    }
+
 }

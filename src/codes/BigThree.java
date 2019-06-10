@@ -24,32 +24,7 @@ public class BigThree {
                 this.root = root;
             }
 
-             Node insert(Node root, int data){
-                 if (root == null) return new Node(data);
-                 else {
-                     Node temp = null;
 
-                     if (data <= root.data) {
-                         temp = insert(root.left,data);
-                         root.left = temp;
-                         temp.parent = root;
-                     }
-                     else {
-                         temp = insert(root.right, data);
-                         root.right = temp;
-                         temp.parent = root;
-                     }
-                 }
-                 return root;
-             }
-
-            int minValue(Node root){
-                Node current = root;
-                while (current.left != null){
-                    current = current.left;
-                }
-                return current.data;
-            }
 
             Node MinValue(Node root){
                 while (root.left != null) root = root.left;
@@ -98,40 +73,14 @@ public class BigThree {
             }
 
 
-
-
-
-            Node delete(Node root, int data){
-                if (root == null) return root;
-                else if (data < root.data) root.left = delete(root.left,data);
-                else if (data > root.data) root.right = delete(root.right,data);
-                else {
-                    //case 1: no child
-                    if (root.left == null && root.right == null) root = null;
-                    //case 2: one child
-                    else if (root.left == null){
-                        return root.right;
-                    }
-                    else if (root.right == null){
-                        return root.left;
-                    }
-                    //case 3: two children
-                    else {
-                        root.data = minValue(root.right);
-                        root.right = delete(root.right, root.data);
-                    }
-                }
-                return root;
-            }
-
             Node deleteOPT(Node root, int data){
                 if (root == null) return root;
                 else if (data < root.data) {
-                    root.left = delete(root.left, data);
+                    root.left = deleteOPT(root.left, data);
                     return root;
                 }
                 else if (data > root.data) {
-                    root.right = delete(root.right, data);
+                    root.right = deleteOPT(root.right, data);
                     return root;
                 }
                 else {
@@ -151,34 +100,7 @@ public class BigThree {
                 }
             }
 
-            Node inOrderSuccessor(Node node){
-                if (node == null) return null;
-                if (node.right != null) return minNode(node.right);
-                else {
-                    Node parent = node.parent;
-                    while (parent != null && node == parent.right){
-                        node = parent;
-                        parent = parent.parent;
-                    }
-                    return parent;
-                }
-            }
-            Node getInOrderSuccessor(Node root, int data){
-                Node current = Search(root, data);
-                if (current == null) return null;
-                if (current.right != null) return MinValue(current.right);
-                else {
-                    Node successor = null;
-                    Node ancestor = root;
-                    while (ancestor != current){
-                        if (current.data < ancestor.data){
-                            successor = ancestor;
-                            ancestor = ancestor.left;
-                        } else ancestor = ancestor.right;
-                    }
-                    return successor;
-                }
-            }
+
 
             public static Node createMinimalBST(int[] array){
                 return createMinimalBST(array,0,array.length - 1);

@@ -5,11 +5,13 @@ public class URLify {
     static void replaceSpaces(char[] string, int trueLength){
 
         int spaceCount = 0;
+
         for (int i = 0; i < trueLength; i++)
             if (string[i] == ' ')
                 spaceCount = spaceCount + 1;
 
         int index = trueLength + spaceCount * 2;
+
         if (trueLength < string.length) string[trueLength] = '\0';
 
         for (int i = trueLength - 1; i >= 0; i--){

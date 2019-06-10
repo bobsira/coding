@@ -2,7 +2,7 @@ package bytebybyte.linkedlist;
 
 public class PrintLinkedList {
 
-    private static void printLinkedList(Node head){
+    public static void printLinkedList(Node head){
         if (head == null) System.out.println("Linked List is Empty");
         while (head != null){
             System.out.print(head.data + "-> ");

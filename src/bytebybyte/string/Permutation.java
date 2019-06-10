@@ -1,6 +1,7 @@
 package bytebybyte.string;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Permutation {
     // 1. GET ALL PERMUTATIONS
@@ -70,6 +71,8 @@ public class Permutation {
         if (first.length() != second.length()) return false;
         int letters[] = new int[128]; //ASCII assumption
 
+        System.out.println(Arrays.toString(letters));
+
 //        char first_character[] = first.toCharArray();
 //        for (char character: first_character) letters[character]++;
 //
@@ -84,24 +87,28 @@ public class Permutation {
             letters[value]++;
         }
 
+        System.out.println(Arrays.toString(letters));
+
         for (int j = 0; j < second.length(); j++){
             int value = second.charAt(j);
             letters[value]--;
             if (letters[value] < 0) return false;
         }
+
+        System.out.println(Arrays.toString(letters));
         return true;
     }
 
     public static void main(String[] args) {
-        ArrayList<int[]> per = new ArrayList<>();
-        int[] elements = {1,2,3};
-        per = permutationArray(elements);
-        for (int i = 0; i < per.size(); i ++){
-            for (int j = 0; j < per.get(i).length; j++) {
-                System.out.print(per.get(i)[j] + " ");
-            }
-            System.out.println();
-        }
+//        ArrayList<int[]> per = new ArrayList<>();
+////        int[] elements = {1,2,3};
+////        per = permutationArray(elements);
+////        for (int i = 0; i < per.size(); i ++){
+////            for (int j = 0; j < per.get(i).length; j++) {
+////                System.out.print(per.get(i)[j] + " ");
+////            }
+////            System.out.println();
+////        }
     }
 
 }

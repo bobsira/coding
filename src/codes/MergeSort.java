@@ -28,7 +28,6 @@ public class MergeSort {
         while (i < lengthL){ arr[k] = left[i]; i++; k++; }
         while (j < lengthR){  arr[k] = right[j]; j++; k++; }
     }
-
     void sort(int[] arr, int start, int end){
         if (start < end){
             int middle = (end + start) / 2;
@@ -37,8 +36,6 @@ public class MergeSort {
             merge(arr,start,middle,end);
         }
     }
-
-
 
     static void _merge(int[] A, int[] L, int[] R){
         int lengthL = L.length , lengthR = R.length;
@@ -81,6 +78,7 @@ public class MergeSort {
             System.out.print(arr[i] + " ");
         System.out.println();
     }
+
     public static void main(String args[]) {
         int arr[] = {12, 11, 13, 5, 6, 2, 1, 7};
 

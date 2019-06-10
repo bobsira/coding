@@ -25,24 +25,23 @@ public class NthToLast {
     }
 
     public static Node getNthFromLast(Node head, int n){
-        int list_length = 0;
+        int length = 0;
         Node current = head;
 
         /*calculate length of linked list*/
         while (current.next != null){
-            list_length = list_length + 1;
+            length = length + 1;
             current = current.next;
         }
 
-        if (list_length < n) return null;
+        if (length < n) return null;
 
         /*reset current back to head */
         current = head;
 
-        /*return the (list_length - n + 1) node from the beginning of list*/
-        for (int i = 1; i < list_length - n + 1; i++)
+        /*return the (length - n + 1) node from the beginning of list*/
+        for (int i = 1; i < length - n + 1; i++)
             current = current.next;
         return current;
     }
-
 }

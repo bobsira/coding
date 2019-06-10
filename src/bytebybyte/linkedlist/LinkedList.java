@@ -1,5 +1,5 @@
 package bytebybyte.linkedlist;
 
 public class LinkedList {
-    Node head;
+    public Node head;
 }
