@@ -25,8 +25,7 @@ public class Collision {
     }
 
     private static boolean detectLoopFloydCycleFindingAlgorithm(Node head){
-        /**
-         * Floyd’s Cycle-Finding Algorithm:
+        /** Floyd’s Cycle-Finding Algorithm:
          * Traverse linked list using two pointers.
          * Move one pointer by one and other pointer by two.
          * If these pointers meet at same node then there is a loop.
@@ -44,37 +43,42 @@ public class Collision {
     private static Node findBeginning(Node head){
         Node fast = head, slow = head;
 
-        /* Find meeting point. This will be LOOP_SIZE - K steps into the linked list. */
+        /**
+         * Find meeting point. This will be LOOP_SIZE - K steps into the linked list.
+         **/
         while (fast != null && fast.next != null){
             slow =slow.next;
             fast = fast.next.next;
             if (slow == fast) break; // Collision
         }
 
-        /** Error check - no meeting point, and therefore no loop
+        /**
+         * Error check - no meeting point, and therefore no loop
          **/
         if (fast == null || fast.next == null) return null;
 
         /**
          * Move slow to Head. Keep fast at Meeting Point. Each are k steps from the
-         * Loop Start. If they move at the same pace, they must meet at Loop Start.*/
+         * Loop Start. If they move at the same pace, they must meet at Loop Start.
+         * */
         slow = head;
         while (slow != fast){
             slow = slow.next;
             fast = fast.next;
         }
 
-        /**Both now point to the start of the loop **/
+        /**
+         * Both now point to the start of the loop
+         * **/
         return fast;
     }
     /**
-    * Our algorithm is derived directly from parts 1, 2 and 3.
     * 1. Create two pointers, FastPointer and SlowPointer.
     * 2. MoveFastPointer at a rate of 2 steps and SlowPointer at a rate of 1 step.
-    * 3. When they collide, move SlowPointer to LinkedListHead. Keep FastPointer where it is.
-    * 4. Move SlowPointer and FastPointer at a·rate of one step. Return the new collision point.
+    * 3. When they collide, move SlowPointer to Linked List Head. Keep FastPointer where it is.
+    * 4. Move SlowPointer and FastPointer at a rate of one step. Return the new collision point.
      * */
 
-    
+
 
 }
