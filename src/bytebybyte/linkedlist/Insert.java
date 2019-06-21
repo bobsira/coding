@@ -27,5 +27,46 @@ public class Insert {
         head.next = node;
     }
 
+    static Node insertAtPositionOneBased(Node head, int position, int data){
+        Node node = new Node(data);
+
+        if (position == 1) {
+            node.next = head;
+            head = node;
+        }
+        else if (position > 1){
+            Node current = head;
+            for (int i = 0; i < position - 2 ; i++)
+                current = current.next;
+
+            if (current.next == null) return head;
+
+            node.next = current.next;
+            current.next = node;
+
+        }
+        return head;
+    }
+
+    private static Node insertAtPositionZeroBased(Node head, int position, int data){
+        Node node = new Node(data);
+
+        if (position == 0) {
+            node.next = head;
+            head = node;
+        }
+        else if (position > 0){
+            Node current = head;
+            for (int i = 0; i < position - 1 ; i++)
+                current = current.next;
+
+            if (current == null) return head;
+
+            node.next = current.next;
+            current.next = node;
+
+        }
+        return head;
+    }
 
 }

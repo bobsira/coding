@@ -25,7 +25,7 @@ public class Compression {
         int count = 1;
         StringBuilder compressedString = new StringBuilder();
 
-        for (int i = 0; i < string.length() -1; i++){
+        for (int i = 0; i < string.length() - 1; i++){
             if (string.charAt(i) == string.charAt(i + 1))
                 count = count + 1;
             else {
@@ -45,14 +45,11 @@ public class Compression {
         int count = 0;
 
         for (int i = 1; i < string.length() ; i++){
-
-            char c = string.charAt(i - 1);
-
+            char character = string.charAt(i - 1);
             if (i % 2 != 0){
                 count =  string.charAt(i) - '0';
-
                 while ( count > 0){
-                    output.append(c);
+                    output.append(character);
                     count = count - 1;
                 }
             }

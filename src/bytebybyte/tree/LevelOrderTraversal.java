@@ -18,16 +18,4 @@ public class LevelOrderTraversal {
         }
     }
 
-    public static void main(String[] args) {
-        Node root = new Node(6);
-        Insert.insert(root,2);
-        Insert.insert(root,3);
-        Insert.insert(root,7);
-        Insert.insert(root,5);
-
-        BinaryTree tree = new BinaryTree(root);
-        LevelOrderTraversal.levelOrder(tree.root);
-
-
-    }
 }

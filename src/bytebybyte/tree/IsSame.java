@@ -95,7 +95,7 @@ public  class IsSame {
         Insert.insert(root2, 5);
 
         BinaryTree tree2 = new BinaryTree(root2);
-        System.out.println(isSameIterative(tree.root, tree2.root));
+        System.out.println(isSame(tree.root, tree2.root));
 
     }
 }

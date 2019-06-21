@@ -15,6 +15,7 @@ public class Delete {
             else if (root.right == null) return root.left;
             //case 3: two child
             else {
+                //copy the contents of the in-order successor to the node and delete the in-order successor
                 root.data = Minimum.minValue(root.right);
                 root.right =  delete(root.right, root.data);
             }

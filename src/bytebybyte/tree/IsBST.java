@@ -13,8 +13,7 @@ public class IsBST {
             return true;
         else return false;
     }
-
-    static boolean isBST(Node root){
+    private static boolean isBST(Node root){
         return isBSTUtil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
@@ -36,7 +35,7 @@ public class IsBST {
     }
 
 
-    static boolean isBST3(Node root){
+    private static boolean isBST3(Node root){
         if (root == null) return true;
         if (isSubtreeLesser(root.left, root.data) && isSubtreeGreater(root.right, root.data) && isBST(root.left) && isBST(root.left)) return true;
         else return false;

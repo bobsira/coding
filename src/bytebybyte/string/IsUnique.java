@@ -1,7 +1,7 @@
 package bytebybyte.string;
 
 public class IsUnique {
-    public static boolean isUnique(String string){
+    private static boolean isUnique(String string){
         if (string.length() > 256) return false; //extended ASCII
         boolean [] character_set = new boolean[256];
         for (int i = 0; i < string.length(); i++){

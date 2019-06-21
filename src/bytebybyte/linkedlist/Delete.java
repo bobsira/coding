@@ -36,6 +36,20 @@ public class Delete {
         current.next = current.next.next;
     }
 
+    static void deleteNodeAtPositionOneBased(Node head, int position){
+        if (head == null) return;
+        Node current = head;
+        if (position == 1){
+            head = current.next;
+        } else if (position > 1){
+            for (int i = 0; i < position - 2 && current.next != null; i++)
+                current = current.next;
+            if (current.next == null) return;
+            current.next = current.next.next;
+        }
+        /** Not tested yet*/
+    }
+
     static Node deleteList(Node head){
         head = null;
         return head;

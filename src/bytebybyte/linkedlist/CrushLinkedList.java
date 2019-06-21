@@ -1,10 +1,4 @@
-package test_questions_one;
-
-import bytebybyte.linkedlist.LinkedList;
-import bytebybyte.linkedlist.Node;
-import bytebybyte.linkedlist.PrintLinkedList;
-
-
+package bytebybyte.linkedlist;
 
 public class CrushLinkedList {
 

@@ -10,6 +10,12 @@ public class PrintLinkedList {
         }
     }
 
+    private static void printList(Node head){
+        if (head == null) return;
+        System.out.print(head.data + "-> ");
+        printList(head.next);
+    }
+
 
     private static void printReverseList(Node head){
         if (head == null) return;

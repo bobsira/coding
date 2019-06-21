@@ -1,4 +1,4 @@
-package codes;
+package bytebybyte.sorting;
 
 public class HeapSort {
 

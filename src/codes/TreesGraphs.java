@@ -1,7 +1,4 @@
 package codes;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 public class TreesGraphs {
@@ -113,73 +110,8 @@ public class TreesGraphs {
         return g;
     }
 
-    public static void printResult(ArrayList<LinkedList<TreeNode>> result){
-        int depth = 0;
-        for (LinkedList<TreeNode> entry: result){
-            Iterator<TreeNode> iterator = entry.listIterator();
-            System.out.print("Link list at depth " + depth + ":");
-            while (iterator.hasNext()) System.out.print(" " + ((TreeNode) iterator.next()).data);
-            System.out.println();
-            depth++;
-        }
-    }
 
-    public static TreeNode createTreeFromArray(int[] array) {
-        if (array.length > 0) {
-            TreeNode root = new TreeNode(array[0]);
-            java.util.Queue<TreeNode> queue = new java.util.LinkedList<TreeNode>();
-            queue.add(root);
-            boolean done = false;
-            int i = 1;
-            while (!done) {
-                TreeNode r = (TreeNode) queue.element();
-                if (r.left == null) {
-                    r.left = new TreeNode(array[i]);
-                    i++;
-                    queue.add(r.left);
-                } else if (r.right == null) {
-                    r.right = new TreeNode(array[i]);
-                    i++;
-                    queue.add(r.right);
-                } else {
-                    queue.remove();
-                }
-                if (i == array.length) {
-                    done = true;
-                }
-            }
-            return root;
-        } else {
-            return null;
-        }
-    }
 
-    public static void main(String[] args) {
-
-        /**Graph g = createNewGraph();
-        Node[] n = g.getNodes();
-        Node start = n[3];
-        Node end = n[5];
-        System.out.println(search(g, start, end));*/
-
-        /**int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        TreeNode root = createMinimalBST(array);
-        System.out.println("Root? " + root.data);
-
-        System.out.println("Is balanced? " + isBalancedB(root));
-        root.insertInOrder(4); // Add 4 to make it unbalanced
-        System.out.println("Is balanced? " + isBalancedI(root));*/
-
-        /**int[] nodes_flattened = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        TreeNode root = createTreeFromArray(nodes_flattened);
-        ArrayList<LinkedList<TreeNode>> list = createLevelLinkedListDFS(root);
-        printResult(list);*/
-
-        /**int[] array = {Integer.MIN_VALUE, 3, 5, 6, 10, 13, 15, Integer.MAX_VALUE};
-        TreeNode node = createMinimalBST(array);
-        boolean isBst = checkBST(node);
-        System.out.println(isBst);*/
-    }
 
     //1. ROUTE BETWEEN NODES
     public enum State {
@@ -210,101 +142,6 @@ public class TreesGraphs {
             }
         }
         return false;
-    }
-
-    //2. MINIMAL TREES
-    public static TreeNode createMinimalBST(int[] array){
-        return createMinimalBST(array, 0, array.length - 1);
-    }
-
-    public static TreeNode createMinimalBST(int arr[], int start, int end){
-        if (end < start) return null;
-        int mid = ( start + end ) / 2 ;
-        TreeNode node = new TreeNode(arr[mid]);
-        node.setLeftChild(createMinimalBST(arr, start, mid - 1));
-        node.setRightChild(createMinimalBST(arr, mid + 1, end));
-        return node;
-    }
-
-    //3. LIST OF DEPTHS
-    // DFS
-    public static ArrayList<LinkedList<TreeNode>> createLevelLinkedListDFS(TreeNode root){
-        ArrayList<LinkedList<TreeNode>> lists = new ArrayList<LinkedList<TreeNode>>();
-        createLevelLinkedListDFS(root, lists, 0);
-        return lists;
-    }
-
-    public static void createLevelLinkedListDFS(TreeNode root, ArrayList<LinkedList<TreeNode>> lists, int level){
-        if (root == null) return;
-        LinkedList<TreeNode> list = null;
-        if (lists.size() == level) {
-            list = new LinkedList<>();
-            lists.add(list);
-        } else {
-            list = lists.get(level);
-        }
-        list.add(root);
-        createLevelLinkedListDFS(root.left, lists, level + 1);
-        createLevelLinkedListDFS(root.right, lists, level + 1);
-    }
-
-    // BFS
-    public static ArrayList<LinkedList<TreeNode>> createLevelLinkedListBFS(TreeNode root){
-        ArrayList<LinkedList<TreeNode>> result = new ArrayList<LinkedList<TreeNode>>();
-        LinkedList<TreeNode> current = new LinkedList<>();
-        if (root != null) current.add(root);
-        while (current.size() > 0){
-            result.add(current);
-            LinkedList<TreeNode> parents = current;
-            current = new LinkedList<TreeNode>();
-            for (TreeNode parent: parents){
-                if (parent.left != null) current.add(parent.left);
-                if (parent.right != null) current.add(parent.right);
-            }
-        }
-        return result;
-    }
-
-    //4. CHECK BALANCED
-    //BRUTE FORCE
-    public static int getHeight(TreeNode root){
-        if (root == null) return -1;
-        return Math.max(getHeight(root.left), getHeight(root.right));
-    }
-    public static boolean isBalancedB(TreeNode root){
-        if (root == null) return true;
-        int heightDiff = getHeight(root.left) - getHeight(root.right);
-        if (Math.abs(heightDiff) > 1) return  false;
-        else return isBalancedB(root.left) && isBalancedB(root.right);
-    }
-
-    //IMPROVED
-    public static int checkHeight(TreeNode root){
-        if (root == null) return -1;
-
-        int leftHeight = checkHeight(root.left);
-        if (leftHeight == Integer.MIN_VALUE) return Integer.MIN_VALUE; // Propagate error up
-
-        int rightHeight = checkHeight(root.right);
-        if (rightHeight == Integer.MIN_VALUE) return Integer.MIN_VALUE; // Propagate error up
-
-        int heightDiff = leftHeight - rightHeight;
-        if (Math.abs(heightDiff) > 1 ) return Integer.MIN_VALUE; // Found error -> pass it back
-        else return Math.max(leftHeight, rightHeight) + 1;
-    }
-    public static boolean isBalancedI(TreeNode root){
-        return checkHeight(root) != Integer.MIN_VALUE;
-    }
-
-    //VALIDATE BST
-    public static boolean checkBST(TreeNode node, Integer min, Integer max){
-        if (node == null) return  true;
-        if ( (min != null && node.data <= min) || (max != null && node.data > max) ) return false;
-        if (!checkBST(node.left, min, node.data) || !checkBST(node.right, node.data, max)) return false;
-        return true;
-    }
-    public static boolean checkBST(TreeNode node){
-        return checkBST(node, null, null);
     }
 
 }

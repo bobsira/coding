@@ -2,8 +2,7 @@ package bytebybyte.string;
 
 public class Palindrome {
 
-    // 1. CHECK PALINDROME
-    static boolean isPalindrome(char[] word){
+    private static boolean isPalindrome(char[] word){
         int i = 0, j = word.length -1;
         while (i < j){
             if (word[i] != word[j])
@@ -13,45 +12,33 @@ public class Palindrome {
         }
         return true;
     }
-    static boolean isPalindromeTwo(String word){
+
+    //STRING INSTEAD OF CHAR ARRAY
+    private static boolean isPalindromeIterative(String string){
+        int low = 0, high = string.length() - 1;
+        while (high > low){
+            if (string.charAt(low) != string.charAt(high) ) return false;
+            low = low + 1;
+            high = high - 1;
+        }
+        return true;
+    }
+
+    private static boolean isPalindromeTwo(String word){
         //return word.equals(new StringBuilder(word).reverse().toString());
         return word.equals(new StringBuffer().append(word).reverse().toString());
     }
 
-    // 2. PALINDROME PERMUTATION
-    static boolean isPermutationOfPalindrome(String word){
-        int[] table = buildFrequencyTable(word);
-        return checkMaxOneOdd(table);
+    private static boolean isPalindromeRecursive(String string){
+        String string_reverse = reverse(string);
+        if (string.equals(string_reverse)) return true;
+        return false;
     }
-    static int[] buildFrequencyTable(String word){
-        int[] table = new int[Character.getNumericValue('z') - Character.getNumericValue('a') + 1];
-        for (char c : word.toCharArray()){
-            int x = getCharNumber(c);
-            if (x != -1)
-                table[x]++;
-        }
-        return table;
+
+    private static String reverse(String string){
+        if (string == null || string.isEmpty()) return string;
+        return string.charAt(string.length() - 1) + reverse(string.substring(0,string.length()-1));
     }
-    static boolean checkMaxOneOdd(int[] table){
-        boolean found = false;
-        for(int count : table){
-            if (count % 2 != 0){
-                if (found)
-                    return false;
-                found = true;
-            }
-        }
-        return true;
-    }
-    static int getCharNumber(Character character){
-        /*Map each character to a number a -> 0, b -> 1, c -> 2
-        * This is case insensitive. Non-letter characters map to -1
-        * */
-        int a = Character.getNumericValue('a');
-        int z = Character.getNumericValue('z');
-        int value = Character.getNumericValue(character);
-        if (a <= value && value <= z)
-            return value - a;
-        return -1;
-    }
+
+
 }
